@@ -5,12 +5,17 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -18,8 +23,25 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
+      - name: Extract tag version
+        id: get_version
+        run: |
+          TAG_VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$TAG_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Update package.json version
+        run: npm version ${{ steps.get_version.outputs.version }} --no-git-tag-version
+
       - name: Install dependencies
         run: npm ci
 
       - name: Compile and Publish to Open VSX
         run: npx ovsx publish -p ${{ secrets.OVSX_PAT }}
+
+      - name: Commit and push updated package.json
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json
+          git commit -m "chore: bump version to ${{ steps.get_version.outputs.version }} [skip ci]" || echo "No changes to commit"
+          git push origin HEAD:main
