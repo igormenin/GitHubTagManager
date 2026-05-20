@@ -12,6 +12,7 @@
     "url": "https://github.com/igormenin/GitHubTagManager/issues"
   },
   "homepage": "https://github.com/igormenin/GitHubTagManager#readme",
+  "license": "MIT",
   "engines": {
     "vscode": "^1.80.0"
   },
