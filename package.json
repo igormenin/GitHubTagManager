@@ -3,7 +3,7 @@
   "displayName": "GitHub Tag Manager",
   "description": "Gerenciador visual de tags Git e versionamento semântico independente de linguagem.",
   "version": "0.1.0",
-  "publisher": "antigravity",
+  "publisher": "igormenin",
   "repository": {
     "type": "git",
     "url": "https://github.com/igormenin/GitHubTagManager.git"
