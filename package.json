@@ -1,0 +1,65 @@
+{
+  "name": "github-tag-manager",
+  "displayName": "GitHub Tag Manager",
+  "description": "Gerenciador visual de tags Git e versionamento semântico independente de linguagem.",
+  "version": "0.1.0",
+  "publisher": "antigravity",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/igormenin/GitHubTagManager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/igormenin/GitHubTagManager/issues"
+  },
+  "homepage": "https://github.com/igormenin/GitHubTagManager#readme",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "github-tag-manager-sidebar",
+          "title": "GitHub Tag Manager",
+          "icon": "$(tag)"
+        }
+      ]
+    },
+    "views": {
+      "github-tag-manager-sidebar": [
+        {
+          "type": "webview",
+          "id": "github-tag-manager-view",
+          "name": "Gerenciador de Tags"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "github-tag-manager.open",
+        "title": "GitHub Tag Manager: Open Manager",
+        "category": "Git"
+      },
+      {
+        "command": "github-tag-manager.refresh",
+        "title": "GitHub Tag Manager: Sincronizar",
+        "icon": "$(refresh)"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "build": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^16.18.34",
+    "typescript": "^5.1.3"
+  }
+}

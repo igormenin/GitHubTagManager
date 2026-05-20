@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Tag Manager</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Gerenciador visual de tags Git e versionamento semântico independente de linguagem para o Antigravity IDE.">
+    <meta property="og:title" content="GitHub Tag Manager">
+    <meta property="og:description" content="Gerenciador visual de tags Git e versionamento semântico independente de linguagem para o Antigravity IDE.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://repository-images.githubusercontent.com/placeholder.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        
+        <!-- SIDEBAR: Status & Version Control -->
+        <aside id="control-sidebar">
+            <header>
+                <div class="header-top-row">
+                    <div class="repo-info-container">
+                        <span class="icon">📁</span>
+                        <h2 id="project-name">Carregando...</h2>
+                    </div>
+                    <div class="lang-selector">
+                        <button id="btn-lang-en" class="btn-lang" title="English">EN</button>
+                        <button id="btn-lang-br" class="btn-lang" title="PT-BR">BR</button>
+                    </div>
+                </div>
+                <div class="branch-status">
+                    <span class="badge" id="branch-badge">branch: --</span>
+                    <span class="badge" id="dirty-badge">status: --</span>
+                </div>
+            </header>
+
+            <!-- Current Version Card -->
+            <section class="card current-version-card">
+                <h3 data-i18n="currentVersion">Versão Atual</h3>
+                <div class="version-display" id="current-version">v0.0.0</div>
+            </section>
+
+            <!-- Bump Version Form -->
+            <section class="card bump-card">
+                <h3 data-i18n="incrementVersion">Incrementar Versão</h3>
+                <div class="bump-actions">
+                    <button class="btn btn-bump" data-type="patch">
+                        <span class="btn-label">PATCH</span>
+                        <span class="btn-preview" id="preview-patch">v0.0.1</span>
+                    </button>
+                    <button class="btn btn-bump" data-type="minor">
+                        <span class="btn-label">MINOR</span>
+                        <span class="btn-preview" id="preview-minor">v0.1.0</span>
+                    </button>
+                    <button class="btn btn-bump" data-type="major">
+                        <span class="btn-label">MAJOR</span>
+                        <span class="btn-preview" id="preview-major">v1.0.0</span>
+                    </button>
+                </div>
+
+                <div class="tag-message-field">
+                    <label for="tag-message" data-i18n="tagMessage">Mensagem da Tag (Anotada)</label>
+                    <textarea id="tag-message" placeholder="Escreva o changelog ou descrição para esta versão..." rows="3"></textarea>
+                    <div class="options-row">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="is-annotated" checked>
+                            <span class="checkmark"></span>
+                            <span data-i18n="createAnnotated">Criar como Tag Anotada (-a)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="security-wrapper">
+                    <button class="btn btn-primary" id="btn-create-tag" data-i18n="createLocalTag" disabled>Criar Tag Local</button>
+                    <div class="security-signal" id="security-msg">
+                        <span class="lock-icon">🔒</span> <span data-i18n="secureConnection">Conexão e execução local segura</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Global Actions -->
+            <section class="global-actions">
+                <button class="btn btn-outline" id="btn-sync" data-i18n="downloadRemote">Baixar TAGs Remotas</button>
+                <button class="btn btn-outline" id="btn-push-all" data-i18n="pushAllTags">Enviar Todas as Tags (Push)</button>
+            </section>
+        </aside>
+
+        <!-- MAIN VIEW: Tag History Timeline -->
+        <main id="timeline-area">
+            <header class="section-header">
+                <h1 data-i18n="gitHistoryTitle">Histórico de Tags Git</h1>
+                <div class="header-actions">
+                    <span class="tag-count" id="tag-count-display">0 tags</span>
+                </div>
+            </header>
+
+            <div id="git-error-state" class="error-panel hidden">
+                <div class="error-icon">⚠️</div>
+                <h3 id="error-state-title" data-i18n="errorStateTitle">Sem Repositório Git</h3>
+                <p id="error-state-body" data-i18n="errorStateBody">Este diretório não está inicializado como um repositório Git ou não possui commits.</p>
+                <button class="btn btn-primary" id="btn-init-git" data-i18n="initRepoBtn">Inicializar Repositório Git</button>
+            </div>
+
+            <div id="empty-state" class="empty-panel hidden">
+                <div class="empty-icon">🏷️</div>
+                <h3 id="empty-state-title" data-i18n="emptyStateTitle">Nenhuma Tag Criada</h3>
+                <p id="empty-state-body" data-i18n="emptyStateBody">Nenhuma tag foi encontrada neste repositório. Use o painel lateral para iniciar o versionamento criando sua primeira tag.</p>
+            </div>
+
+            <div id="timeline-list" class="timeline max-w-prose">
+                <!-- Inserido dinamicamente via JS -->
+            </div>
+        </main>
+    </div>
+
+    <!-- TERMINAL: Command Exec Logs -->
+    <footer id="console-logs">
+        <div class="console-header" id="toggle-console">
+            <span class="title" id="console-title" data-i18n="consoleTitle">❯ Console de Execução Git</span>
+            <div class="authority-signal">Antigravity Official extension • v0.1.0</div>
+            <span class="indicator">▼</span>
+        </div>
+        <div class="console-body" id="console-body">
+            <!-- Logs inseridos dinamicamente -->
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
