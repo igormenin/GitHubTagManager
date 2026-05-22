@@ -19,7 +19,6 @@ const locales = {
         errorStateTitle: "No Git Repository",
         errorStateBody: "This directory is not initialized as a Git repository or has no commits.",
         initRepoBtn: "Initialize Git Repository",
-        consoleTitle: "❯ Git Execution Console",
         badgeSync: "GitHub Sync",
         badgeLocal: "Local Only",
         btnPush: "Push to GitHub",
@@ -46,7 +45,6 @@ const locales = {
         errorStateTitle: "Sem Repositório Git",
         errorStateBody: "Este diretório não está inicializado como um repositório Git ou não possui commits.",
         initRepoBtn: "Inicializar Repositório Git",
-        consoleTitle: "❯ Console de Execução Git",
         badgeSync: "GitHub Sync",
         badgeLocal: "Local Only",
         btnPush: "Push para GitHub",
@@ -99,10 +97,6 @@ const emptyState = document.getElementById('empty-state');
 const timelineList = document.getElementById('timeline-list');
 const timelineArea = document.getElementById('timeline-area');
 const controlSidebar = document.getElementById('control-sidebar');
-
-const toggleConsole = document.getElementById('toggle-console');
-const consoleLogs = document.getElementById('console-logs');
-const consoleBody = document.getElementById('console-body');
 
 // Funções de Gerenciamento de Idioma
 function setLanguage(lang) {
@@ -159,12 +153,7 @@ function setupEventListeners() {
     btnLangEn.addEventListener('click', () => setLanguage('en'));
     btnLangBr.addEventListener('click', () => setLanguage('br'));
 
-    // Alternar colapso do console de logs
-    toggleConsole.addEventListener('click', () => {
-        consoleLogs.classList.toggle('collapsed');
-        const indicator = toggleConsole.querySelector('.indicator');
-        indicator.textContent = consoleLogs.classList.contains('collapsed') ? '▲' : '▼';
-    });
+
 
     // Cliques nos botões de Bump
     const bumpButtons = document.querySelectorAll('.btn-bump');
@@ -299,9 +288,6 @@ window.addEventListener('message', event => {
             }
             updateLanguageUI();
             updateUI(data);
-            break;
-        case 'log':
-            appendLog(message.payload);
             break;
         case 'operationError':
             alert(`Erro na operação: ${message.message}`);
@@ -468,26 +454,4 @@ function renderTimeline() {
 
         timelineList.appendChild(item);
     });
-}
-
-// Inserir log no console virtual
-function appendLog(log) {
-    const logLine = document.createElement('div');
-    logLine.className = 'log-entry';
-
-    const logTime = document.createElement('span');
-    logTime.className = 'log-time';
-    logTime.textContent = `[${log.time}]`;
-
-    const logText = document.createElement('span');
-    logText.className = `log-text ${log.type}`;
-    logText.textContent = log.text;
-
-    logLine.appendChild(logTime);
-    logLine.appendChild(logText);
-
-    consoleBody.appendChild(logLine);
-
-    // Auto-scroll para o fim
-    consoleBody.scrollTop = consoleBody.scrollHeight;
 }

@@ -445,11 +445,8 @@ export class TagViewProvider implements vscode.WebviewViewProvider {
         }
     }
 
-    // Imprimir log de console na Webview
+    // Imprimir log de console na Webview (Removido da interface visual)
     private logToWebview(text: string, type: 'info' | 'success' | 'error' = 'info') {
-        this._view?.webview.postMessage({
-            command: 'log',
-            payload: { text, type, time: new Date().toLocaleTimeString() }
-        });
+        console.log(`[GitLog] [${type.toUpperCase()}] ${text}`);
     }
 }

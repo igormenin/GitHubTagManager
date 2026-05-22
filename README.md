@@ -1,6 +1,15 @@
+<p align="center">
+  <img src="img/icon.png" width="96" alt="GitHub Tag Manager Icon" />
+</p>
+
 # GitHub Tag Manager
 
 A language-agnostic, visual VS Code / Antigravity IDE extension to manage local and remote Git tags and semantic versioning (SemVer) directly from your left activity bar.
+
+<p align="center">
+  <img src="img/sidebar.png" width="45%" alt="GitHub Tag Manager - Painel Lateral" />
+  <img src="img/history.png" width="45%" alt="GitHub Tag Manager - Histórico e Console" />
+</p>
 
 ---
 
