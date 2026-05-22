@@ -2,6 +2,11 @@
 
 All notable changes to the "GitHub Tag Manager" extension will be documented in this file.
 
+## [0.3.2] - 2026-05-22
+
+### Added
+- Search keywords/tags to `package.json` to make the extension more discoverable in Open VSX.
+
 ## [0.3.1] - 2026-05-22
 
 ### Changed
