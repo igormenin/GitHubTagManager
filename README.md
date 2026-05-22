@@ -31,6 +31,17 @@ A language-agnostic, visual VS Code / Antigravity IDE extension to manage local 
 
 ---
 
+## Security & Operation / Segurança e Funcionamento
+
+### English
+> [!NOTE]
+> The extension interacts directly with the local Git CLI on your machine inside the opened workspace directory. It **does not store, collect, or transmit any credentials, access tokens, or repository details**. All remote operations (such as `push` or `fetch`) rely entirely on your existing local Git configuration (SSH keys, credentials helper, etc.).
+
+### Português (Brasil)
+> [!NOTE]
+> A extensão interage diretamente com o CLI local do Git na sua máquina, rodando dentro da pasta do projeto aberto. Ela **não armazena, coleta ou transmite credenciais, tokens de acesso ou informações do repositório**. Todas as operações remotas (como `push` ou `fetch`) utilizam as configurações já existentes do seu Git local (chaves SSH, gerenciador de credenciais, etc.).
+
+---
 ## How to Use / Como Usar
 
 ### English

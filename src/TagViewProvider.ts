@@ -135,21 +135,25 @@ export class TagViewProvider implements vscode.WebviewViewProvider {
             const branch = await this.getCurrentBranch();
             const isDirty = await this.getDirtyStatus();
 
-            // 3. Buscar tags locais
+            // 3. Verificar se tem remote configurado
+            const isRemoteConfigured = await this.checkIsGitRemoteConfigured();
+
+            // 4. Buscar tags locais
             const tags = await this.getLocalTags();
 
-            // 4. Buscar tags remotas (para marcar se foram enviadas)
-            const remoteTags = await this.getRemoteTags();
+            // 5. Buscar tags remotas (para marcar se foram enviadas) - apenas se houver remote
+            const remoteTags = isRemoteConfigured ? await this.getRemoteTags() : [];
 
-            // 5. Descobrir última versão baseada em tag
+            // 6. Descobrir última versão baseada em tag
             const currentVersion = await this.getCurrentVersionFromTags();
 
-            // 6. Nome da pasta do projeto
+            // 7. Nome da pasta do projeto
             const workspaceFolders = vscode.workspace.workspaceFolders;
             const projectName = workspaceFolders ? workspaceFolders[0].name : 'Projeto Sem Nome';
 
             const payload = {
                 isGitRepo: true,
+                isGitHubConfigured: isRemoteConfigured,
                 projectName,
                 branch,
                 isDirty,
@@ -175,6 +179,15 @@ export class TagViewProvider implements vscode.WebviewViewProvider {
                 command: 'operationError',
                 message: error.message
             });
+        }
+    }
+
+    private async checkIsGitRemoteConfigured(): Promise<boolean> {
+        try {
+            const { stdout } = await this.execGit('git remote');
+            return stdout.trim().length > 0;
+        } catch {
+            return false;
         }
     }
 

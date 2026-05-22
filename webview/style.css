@@ -571,6 +571,65 @@ textarea:focus {
     border-color: var(--danger);
 }
 
+/* Red Error Banner at the top */
+.error-banner {
+    background-color: var(--danger);
+    color: #ffffff;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    flex-shrink: 0;
+}
+
+.error-banner .error-icon {
+    font-size: 16px;
+    margin: 0;
+}
+
+.error-banner .banner-content {
+    flex: 1;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.error-banner .btn-revalidate {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    height: auto;
+    transition: background-color 0.15s ease, transform 0.1s;
+}
+
+.error-banner .btn-revalidate:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+.error-banner .btn-revalidate:active {
+    transform: translateY(1px);
+}
+
+/* Disabled state with reduced opacity and blocked pointer events */
+.disabled-state {
+    opacity: 0.4 !important;
+    pointer-events: none !important;
+}
+
+/* Allow language selector to be interactive when disabled */
+.disabled-state .lang-selector {
+    pointer-events: auto !important;
+    opacity: 1 !important;
+}
+
 /* Language Selector Styles */
 .header-top-row {
     display: flex;

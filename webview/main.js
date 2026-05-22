@@ -19,6 +19,9 @@ const locales = {
         errorStateTitle: "No Git Repository",
         errorStateBody: "This directory is not initialized as a Git repository or has no commits.",
         initRepoBtn: "Initialize Git Repository",
+        githubErrorTitle: "Git Remote Not Configured",
+        githubErrorBody: "This local Git repository does not have a remote configured. Configure a remote (e.g. 'git remote add origin <url>') to enable the features of this extension.",
+        btnRevalidate: "Revalidate",
         badgeSync: "GitHub Sync",
         badgeLocal: "Local Only",
         btnPush: "Push to GitHub",
@@ -45,6 +48,9 @@ const locales = {
         errorStateTitle: "Sem Repositório Git",
         errorStateBody: "Este diretório não está inicializado como um repositório Git ou não possui commits.",
         initRepoBtn: "Inicializar Repositório Git",
+        githubErrorTitle: "Git Remoto Não Configurado",
+        githubErrorBody: "Este repositório Git local não possui um remote configurado. Configure um remote (ex: 'git remote add origin <url>') para habilitar as funcionalidades da extensão.",
+        btnRevalidate: "Revalidar",
         badgeSync: "GitHub Sync",
         badgeLocal: "Local Only",
         btnPush: "Push para GitHub",
@@ -93,6 +99,8 @@ const btnInitGit = document.getElementById('btn-init-git');
 
 const tagCountDisplay = document.getElementById('tag-count-display');
 const gitErrorState = document.getElementById('git-error-state');
+const githubErrorBanner = document.getElementById('github-error-banner');
+const btnRevalidate = document.getElementById('btn-revalidate');
 const emptyState = document.getElementById('empty-state');
 const timelineList = document.getElementById('timeline-list');
 const timelineArea = document.getElementById('timeline-area');
@@ -226,6 +234,11 @@ function setupEventListeners() {
     btnInitGit.addEventListener('click', () => {
         vscode.postMessage({ command: 'initRepo' });
     });
+
+    // Revalidar Remote Configured
+    btnRevalidate.addEventListener('click', () => {
+        vscode.postMessage({ command: 'loadData' });
+    });
 }
 
 // Algoritmo robusto de cálculo SemVer
@@ -300,9 +313,11 @@ function updateUI(payload) {
     if (!payload.isGitRepo) {
         // Exibir tela de erro de Git
         gitErrorState.classList.remove('hidden');
+        githubErrorBanner.classList.add('hidden');
         emptyState.classList.add('hidden');
         timelineList.classList.add('hidden');
-        controlSidebar.style.opacity = '0.5';
+        controlSidebar.classList.add('disabled-state');
+        timelineArea.classList.add('disabled-state');
         disableSidebarControls(true);
         projectNameEl.textContent = currentLang === 'br' ? 'Sem Repositório' : 'No Repository';
         branchBadgeEl.textContent = 'branch: --';
@@ -311,10 +326,28 @@ function updateUI(payload) {
         return;
     }
 
+    if (!payload.isGitHubConfigured) {
+        // Exibir banner de erro de GitHub no topo
+        githubErrorBanner.classList.remove('hidden');
+        gitErrorState.classList.add('hidden');
+        emptyState.classList.add('hidden');
+        timelineList.classList.add('hidden');
+        controlSidebar.classList.add('disabled-state');
+        timelineArea.classList.add('disabled-state');
+        disableSidebarControls(true);
+        projectNameEl.textContent = payload.projectName || (currentLang === 'br' ? 'Git Remoto Não Configurado' : 'Git Remote Not Configured');
+        branchBadgeEl.textContent = `branch: ${payload.branch || '--'}`;
+        dirtyBadgeEl.textContent = 'status: --';
+        currentVersionEl.textContent = 'v0.0.0';
+        return;
+    }
+
     // Ativar área normal
     gitErrorState.classList.add('hidden');
+    githubErrorBanner.classList.add('hidden');
     timelineList.classList.remove('hidden');
-    controlSidebar.style.opacity = '1';
+    controlSidebar.classList.remove('disabled-state');
+    timelineArea.classList.remove('disabled-state');
     disableSidebarControls(false);
 
     // Salvar estado
@@ -357,8 +390,9 @@ function updateUI(payload) {
 function disableSidebarControls(disabled) {
     const inputs = controlSidebar.querySelectorAll('button, textarea, input[type="checkbox"]');
     inputs.forEach(input => {
-        // Ignorar o botão de inicializar git que está fora do sidebar, mas se for outros botões, desabilitar
-        if (input.id !== 'btn-init-git') {
+        // Ignorar o botão de inicializar git que está fora do sidebar
+        // Também ignorar os botões de idioma para que continuem funcionando
+        if (input.id !== 'btn-init-git' && !input.classList.contains('btn-lang')) {
             input.disabled = disabled;
         }
     });

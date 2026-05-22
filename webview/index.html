@@ -13,6 +13,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="github-error-banner" class="error-banner hidden">
+        <span class="error-icon">🚫</span>
+        <div class="banner-content">
+            <span id="github-error-text" data-i18n="githubErrorBody">Este repositório Git local não possui um remote configurado. Configure um remote para habilitar as funcionalidades da extensão.</span>
+        </div>
+        <button id="btn-revalidate" class="btn btn-revalidate" data-i18n="btnRevalidate">Revalidar</button>
+    </div>
+
     <div id="app-container">
         
         <!-- SIDEBAR: Status & Version Control -->
@@ -98,8 +106,9 @@
                 <div class="error-icon">⚠️</div>
                 <h3 id="error-state-title" data-i18n="errorStateTitle">Sem Repositório Git</h3>
                 <p id="error-state-body" data-i18n="errorStateBody">Este diretório não está inicializado como um repositório Git ou não possui commits.</p>
-                <button class="btn btn-primary" id="btn-init-git" data-i18n="initRepoBtn">Inicializar Repositório Git</button>
             </div>
+
+
 
             <div id="empty-state" class="empty-panel hidden">
                 <div class="empty-icon">🏷️</div>

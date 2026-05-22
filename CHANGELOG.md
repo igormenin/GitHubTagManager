@@ -2,6 +2,22 @@
 
 All notable changes to the "GitHub Tag Manager" extension will be documented in this file.
 
+## [0.3.0] - 2026-05-22
+
+### Added
+- Dynamic Git remote configuration check upon extension opening.
+- Prominent red warning banner at the top of the extension when no Git remote is configured.
+- "Revalidate" button inside the error banner to trigger configuration checks dynamically.
+- Complete visual lock of extension functionalities (panels rendered with 40% opacity and disabled pointer events) until a remote is configured and successfully validated.
+
+### Changed
+- Translated the extension manifest (`package.json`) description to English.
+- Reorganized assets structure (moved screenshots and icon to root `img/` folder) and updated paths in README.
+- Added the extension icon to the top of the README.md.
+
+### Removed
+- Unused "Git Execution Console" log panel at the bottom of the interface.
+
 ## [0.2.0] - 2026-05-20
 
 ### Added
