@@ -2,6 +2,11 @@
 
 All notable changes to the "GitHub Tag Manager" extension will be documented in this file.
 
+## [0.3.1] - 2026-05-22
+
+### Changed
+- Moved the extension marketplace icon back to the root level (`icon.png`) to ensure compatibility with Open VSX.
+
 ## [0.3.0] - 2026-05-22
 
 ### Added

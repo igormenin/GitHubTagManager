@@ -2,9 +2,9 @@
   "name": "github-tag-manager",
   "displayName": "GitHub Tag Manager",
   "description": "Visual Git tag manager and language-agnostic semantic versioning helper.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "publisher": "igormenin",
-  "icon": "img/icon.png",
+  "icon": "icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/igormenin/GitHubTagManager.git"
