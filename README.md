@@ -4,6 +4,18 @@
 
 # GitHub Tag Manager
 
+<p align="center">
+  <a href="https://marketplace.visualstudio.com/items?itemName=igormenin.github-tag-manager">
+    <img src="https://img.shields.io/visual-studio-marketplace/i/igormenin.github-tag-manager?style=flat&logo=visual-studio-code&label=Marketplace%20Installs" alt="VS Code Marketplace Installs" />
+  </a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=igormenin.github-tag-manager">
+    <img src="https://img.shields.io/visual-studio-marketplace/d/igormenin.github-tag-manager?style=flat&logo=visual-studio-code&label=Downloads" alt="VS Code Marketplace Downloads" />
+  </a>
+  <a href="https://open-vsx.org/extension/igormenin/github-tag-manager">
+    <img src="https://img.shields.io/open-vsx/dt/igormenin/github-tag-manager?style=flat&label=Open%20VSX%20Downloads" alt="Open VSX Downloads" />
+  </a>
+</p>
+
 A language-agnostic, visual VS Code / Antigravity IDE extension to manage local and remote Git tags and semantic versioning (SemVer) directly from your left activity bar.
 
 <p align="center">
