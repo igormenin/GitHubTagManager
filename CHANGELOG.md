@@ -2,6 +2,28 @@
 
 All notable changes to the "GitHub Tag Manager" extension will be documented in this file.
 
+## [0.4.0] - 2026-06-04
+
+### Added
+- Modular anonymous telemetry system using PostHog to track active usage and key interactions (tag creation, pushing, deleting, repository initialization) to improve the extension.
+- Local consent prompt on first startup explaining telemetry, dynamically localized in Portuguese and English.
+- Local configuration setting `github-tag-manager.telemetry.enabled` allowing users to opt-in or opt-out of telemetry individually for this extension.
+
+## [0.3.5] - 2026-06-03
+
+### Changed
+- README.md badge layout and alignment adjustments.
+
+## [0.3.4] - 2026-06-03
+
+### Changed
+- Added dynamic status and marketplace badges to README.md.
+
+## [0.3.3] - 2026-06-03
+
+### Added
+- Configuration files and metadata adjustments to publish the extension to the VS Code Marketplace.
+
 ## [0.3.2] - 2026-05-22
 
 ### Added

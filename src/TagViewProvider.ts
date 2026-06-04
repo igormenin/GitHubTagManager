@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import { exec } from 'child_process';
+import { telemetry } from './telemetry';
 
 export class TagViewProvider implements vscode.WebviewViewProvider {
     public static readonly viewType = 'github-tag-manager-view';
@@ -284,6 +285,7 @@ export class TagViewProvider implements vscode.WebviewViewProvider {
         try {
             await this.execGit(cmd);
             this.logToWebview(`Tag ${tagName} criada localmente com sucesso.`, 'success');
+            telemetry.trackEvent('tag_created', { version, isAnnotated });
             await this.loadWorkspaceData();
         } catch (error: any) {
             this.logToWebview(`Erro ao criar tag: ${error.message}`, 'error');
@@ -298,6 +300,7 @@ export class TagViewProvider implements vscode.WebviewViewProvider {
         try {
             await this.execGit(cmd);
             this.logToWebview(`Tag ${tagName} enviada para o remoto 'origin'.`, 'success');
+            telemetry.trackEvent('tag_pushed', { tagName });
             await this.loadWorkspaceData();
         } catch (error: any) {
             this.logToWebview(`Erro ao enviar tag: ${error.message}`, 'error');
@@ -335,6 +338,7 @@ export class TagViewProvider implements vscode.WebviewViewProvider {
                     : `All local tags were pushed to the remote repository.`,
                 'success'
             );
+            telemetry.trackEvent('tag_all_pushed');
             await this.loadWorkspaceData();
         } catch (error: any) {
             this.logToWebview(
@@ -413,6 +417,7 @@ export class TagViewProvider implements vscode.WebviewViewProvider {
                 );
             }
 
+            telemetry.trackEvent('tag_deleted', { tagName, localOnly });
             await this.loadWorkspaceData();
         } catch (error: any) {
             this.logToWebview(
@@ -451,6 +456,7 @@ export class TagViewProvider implements vscode.WebviewViewProvider {
         try {
             await this.execGit(cmd);
             this.logToWebview(`Repositório Git iniciado com sucesso!`, 'success');
+            telemetry.trackEvent('repo_initialized');
             await this.loadWorkspaceData();
         } catch (error: any) {
             this.logToWebview(`Erro ao iniciar repositório: ${error.message}`, 'error');

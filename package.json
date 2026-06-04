@@ -2,7 +2,7 @@
   "name": "github-tag-manager",
   "displayName": "GitHub Tag Manager",
   "description": "Visual Git tag manager and language-agnostic semantic versioning helper.",
-  "version": "0.3.5",
+  "version": "0.4.0",
   "publisher": "igormenin",
   "icon": "icon.png",
   "repository": {
@@ -60,7 +60,17 @@
         "title": "GitHub Tag Manager: Sincronizar",
         "icon": "$(refresh)"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "GitHub Tag Manager",
+      "properties": {
+        "github-tag-manager.telemetry.enabled": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Permite enviar dados de uso anônimos para melhoria contínua da extensão. / Allows sending anonymous usage statistics to improve the extension."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -69,8 +79,11 @@
     "build": "npm run compile"
   },
   "devDependencies": {
-    "@types/vscode": "^1.80.0",
     "@types/node": "^16.18.34",
+    "@types/vscode": "^1.80.0",
     "typescript": "^5.1.3"
+  },
+  "dependencies": {
+    "posthog-node": "^5.36.1"
   }
 }
