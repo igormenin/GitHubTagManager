@@ -7,7 +7,10 @@ export function activate(context: vscode.ExtensionContext) {
     const promptShown = context.globalState.get<boolean>('telemetryPromptShown');
 
     if (!promptShown) {
-        const isPortuguese = vscode.env.language.toLowerCase().startsWith('pt');
+        const savedLang = context.globalState.get<'en' | 'br'>('extensionLanguage');
+        const isPortuguese = savedLang 
+            ? savedLang === 'br' 
+            : vscode.env.language.toLowerCase().startsWith('pt');
         const msg = isPortuguese
             ? "Para nos ajudar a melhorar o GitHub Tag Manager, gostaríamos de coletar estatísticas de uso anônimas (interações de tags). Nenhum código do seu projeto será lido. Deseja habilitar a telemetria?"
             : "To help us improve GitHub Tag Manager, we would like to collect anonymous usage statistics (tag interactions). No project code is ever read. Would you like to enable telemetry?";
@@ -32,7 +35,7 @@ export function activate(context: vscode.ExtensionContext) {
         telemetry.trackEvent('extension_activated');
     }
 
-    const provider = new TagViewProvider(context.extensionUri);
+    const provider = new TagViewProvider(context);
 
     // Registrar o provedor de visualização da barra lateral
     context.subscriptions.push(

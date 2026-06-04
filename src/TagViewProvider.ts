@@ -9,9 +9,18 @@ export class TagViewProvider implements vscode.WebviewViewProvider {
     private _view?: vscode.WebviewView;
     private _currentLanguage: 'en' | 'br' = 'en';
 
-    constructor(private readonly _extensionUri: vscode.Uri) {
+    constructor(private readonly _context: vscode.ExtensionContext) {
         const ideLang = vscode.env.language.toLowerCase();
-        this._currentLanguage = ideLang.startsWith('pt') ? 'br' : 'en';
+        const savedLang = this._context.globalState.get<'en' | 'br'>('extensionLanguage');
+        if (savedLang) {
+            this._currentLanguage = savedLang;
+        } else {
+            this._currentLanguage = ideLang.startsWith('pt') ? 'br' : 'en';
+        }
+    }
+
+    get _extensionUri(): vscode.Uri {
+        return this._context.extensionUri;
     }
 
     public resolveWebviewView(
@@ -38,6 +47,7 @@ export class TagViewProvider implements vscode.WebviewViewProvider {
             switch (message.command) {
                 case 'changeLanguage':
                     this._currentLanguage = message.lang === 'br' ? 'br' : 'en';
+                    await this._context.globalState.update('extensionLanguage', this._currentLanguage);
                     break;
                 case 'loadData':
                     await this.loadWorkspaceData();
