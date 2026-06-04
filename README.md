@@ -1,16 +1,24 @@
-<a href="https://marketplace.visualstudio.com/items?itemName=igormenin.github-tag-manager">
-  <img align="right" src="https://vsmarketplacebadges.dev/installs/igormenin.github-tag-manager.svg?subject=VSCode%20Marketplace&v=1" alt="VS Code Marketplace Installs" />
-</a>
-<br />
-<a href="https://open-vsx.org/extension/igormenin/github-tag-manager">
-  <img align="right" src="https://img.shields.io/open-vsx/dt/igormenin/github-tag-manager?style=flat&label=Open%20VSX%20Installs" alt="Open VSX Downloads" />
-</a>
-
 <p align="center">
   <img src="img/icon.png" width="96" alt="GitHub Tag Manager Icon" />
 </p>
 
-<br clear="right" />
+<p align="left">
+  <a href="https://marketplace.visualstudio.com/items?itemName=igormenin.github-tag-manager">
+    <img src="https://vsmarketplacebadges.dev/installs/igormenin.github-tag-manager.svg?subject=VSCode%20Marketplace&v=1" alt="VS Code Marketplace" />
+  </a>
+  <a href="https://open-vsx.org/extension/igormenin/github-tag-manager">
+    <img src="https://img.shields.io/open-vsx/dt/igormenin/github-tag-manager?style=flat&label=Open%20VSX%20Installs" alt="Open VSX Installs" />
+  </a>
+  <a href="https://github.com/igormenin/GitHubTagManager/tags">
+    <img src="https://img.shields.io/github/v/tag/igormenin/GitHubTagManager?label=Tag" alt="GitHub Tag" />
+  </a>
+  <a href="https://github.com/igormenin/GitHubTagManager/actions">
+    <img src="https://github.com/igormenin/GitHubTagManager/actions/workflows/publish.yml/badge.svg" alt="Build Status" />
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/github/license/igormenin/GitHubTagManager?color=blue" alt="License" />
+  </a>
+</p>
 
 # GitHub Tag Manager
 
