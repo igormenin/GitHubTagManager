@@ -10,7 +10,7 @@
     <img src="https://img.shields.io/open-vsx/dt/igormenin/github-tag-manager?style=flat&label=Open%20VSX%20Installs" alt="Open VSX Installs" />
   </a>
   <a href="https://github.com/igormenin/GitHubTagManager/tags">
-    <img src="https://badgen.net/github/tag/igormenin/GitHubTagManager?label=Tag&color=green" alt="GitHub Tag" />
+    <img src="https://badgen.net/github/tag/igormenin/GitHubTagManager?label=Last%20Version&color=green" alt="GitHub Tag" />
   </a>
   <a href="https://github.com/igormenin/GitHubTagManager/actions">
     <img src="https://github.com/igormenin/GitHubTagManager/actions/workflows/publish.yml/badge.svg" alt="Build Status" />
