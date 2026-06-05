@@ -2,11 +2,19 @@
 
 All notable changes to the "GitHub Tag Manager" extension will be documented in this file.
 
+## [0.4.1] - 2026-06-04
+
+### Added
+- Persistent global state storage to save and synchronize language preferences across extension activations.
+
+### Changed
+- Local consent prompt dynamically synchronized with the user's selected extension language preference (falling back to IDE language).
+
 ## [0.4.0] - 2026-06-04
 
 ### Added
 - Modular anonymous telemetry system using PostHog to track active usage and key interactions (tag creation, pushing, deleting, repository initialization) to improve the extension.
-- Local consent prompt on first startup explaining telemetry, dynamically localized in Portuguese and English.
+- Local consent prompt on first startup explaining telemetry, dynamically localized in Portuguese or English based on the IDE language setting.
 - Local configuration setting `github-tag-manager.telemetry.enabled` allowing users to opt-in or opt-out of telemetry individually for this extension.
 
 ## [0.3.5] - 2026-06-03

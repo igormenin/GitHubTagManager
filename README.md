@@ -66,7 +66,7 @@ A language-agnostic, visual VS Code / Antigravity IDE extension to manage local 
 ### English
 > [!IMPORTANT]
 > **Anonymous Telemetry (Opt-In):**
-> Starting in version `0.4.0`, this extension includes optional telemetry powered by PostHog to collect anonymous usage data (e.g., tracking tag creation, push, and deletion events) to help us improve the tool.
+> Starting in version `0.4.1`, this extension includes optional telemetry powered by PostHog to collect anonymous usage data (e.g., tracking tag creation, push, and deletion events) to help us improve the tool.
 > * Telemetry is **disabled by default** (strict opt-in).
 > * The extension does **not** read or transmit any of your project's source code, credentials, or personal information.
 > * You can enable or disable telemetry at any time via the extension setting: `github-tag-manager.telemetry.enabled`.
@@ -74,7 +74,7 @@ A language-agnostic, visual VS Code / Antigravity IDE extension to manage local 
 ### Português (Brasil)
 > [!IMPORTANT]
 > **Telemetria Anônima (Opt-In):**
-> A partir da versão `0.4.0`, esta extensão inclui telemetria opcional via PostHog para coletar dados anônimos de uso (como eventos de criação, envio e exclusão de tags) para nos ajudar a melhorar a ferramenta.
+> A partir da versão `0.4.1`, esta extensão inclui telemetria opcional via PostHog para coletar dados anônimos de uso (como eventos de criação, envio e exclusão de tags) para nos ajudar a melhorar a ferramenta.
 > * A telemetria vem **desabilitada por padrão** (opt-in estrito).
 > * A extensão **não** lê ou transmite o código-fonte do seu projeto, credenciais ou informações pessoais.
 > * Você pode ativar ou desativar a telemetria a qualquer momento através da configuração da extensão: `github-tag-manager.telemetry.enabled`.
