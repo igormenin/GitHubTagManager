@@ -19,7 +19,7 @@
     <img src="https://github.com/igormenin/GitHubTagManager/actions/workflows/publish.yml/badge.svg" alt="Build Status" />
   </a>
   <a href="LICENSE">
-    <img src="https://img.shields.io/github/license/igormenin/GitHubTagManager?color=blue" alt="License" />
+    <img src="https://img.shields.io/badge/license-MIT-blue" alt="License" />
   </a>
 </p>
 
