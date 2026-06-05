@@ -4,7 +4,10 @@
 
 <p align="left">
   <a href="https://marketplace.visualstudio.com/items?itemName=igormenin.github-tag-manager">
-    <img src="https://vsmarketplacebadges.dev/installs/igormenin.github-tag-manager.svg?subject=VSCode%20Marketplace&v=1" alt="VS Code Marketplace" />
+    <img src="https://vsmarketplacebadges.dev/installs/igormenin.github-tag-manager.svg?subject=VSCode%20Marketplace&v=1" alt="VSCode Marketplace Installs" />
+  </a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=igormenin.github-tag-manager">
+    <img src="https://badgen.net/vs-marketplace/d/igormenin.github-tag-manager" alt="VSCode Marketplace Downloads" />
   </a>
   <a href="https://open-vsx.org/extension/igormenin/github-tag-manager">
     <img src="https://img.shields.io/open-vsx/dt/igormenin/github-tag-manager?style=flat&label=Open%20VSX%20Installs" alt="Open VSX Installs" />
