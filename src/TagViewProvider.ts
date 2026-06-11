@@ -75,6 +75,9 @@ export class TagViewProvider implements vscode.WebviewViewProvider {
 
         // Executar carregamento inicial de dados
         this.loadWorkspaceData();
+
+        // Verificar consentimento da telemetria de forma centralizada quando o painel for exibido
+        this.checkTelemetryConsent();
     }
 
     // Método público para forçar recarregamento
@@ -471,6 +474,38 @@ export class TagViewProvider implements vscode.WebviewViewProvider {
         } catch (error: any) {
             this.logToWebview(`Erro ao iniciar repositório: ${error.message}`, 'error');
             vscode.window.showErrorMessage(`Falha ao iniciar repositório: ${error.message}`);
+        }
+    }
+
+    private async checkTelemetryConsent() {
+        const promptShown = this._context.globalState.get<boolean>('telemetryPromptShown');
+
+        if (!promptShown) {
+            const savedLang = this._context.globalState.get<'en' | 'br'>('extensionLanguage');
+            const isPortuguese = savedLang 
+                ? savedLang === 'br' 
+                : vscode.env.language.toLowerCase().startsWith('pt');
+            const msg = isPortuguese
+                ? "Para nos ajudar a melhorar o GitHub Tag Manager, gostaríamos de coletar estatísticas de uso anônimas (interações de tags). Nenhum código do seu projeto será lido. Deseja habilitar a telemetria?"
+                : "To help us improve GitHub Tag Manager, we would like to collect anonymous usage statistics (tag interactions). No project code is ever read. Would you like to enable telemetry?";
+            const acceptLabel = isPortuguese ? "Aceitar" : "Accept";
+            const declineLabel = isPortuguese ? "Recusar" : "Decline";
+
+            // Usando { modal: true } para centralizar a mensagem na tela e bloquear o editor
+            vscode.window.showInformationMessage(msg, { modal: true }, acceptLabel, declineLabel).then(async (selection) => {
+                if (selection === acceptLabel) {
+                    await vscode.workspace.getConfiguration('github-tag-manager').update('telemetry.enabled', true, vscode.ConfigurationTarget.Global);
+                    await this._context.globalState.update('telemetryPromptShown', true);
+                    telemetry.initialize();
+                    telemetry.trackEvent('extension_activated');
+                } else if (selection === declineLabel) {
+                    await vscode.workspace.getConfiguration('github-tag-manager').update('telemetry.enabled', false, vscode.ConfigurationTarget.Global);
+                    await this._context.globalState.update('telemetryPromptShown', true);
+                }
+            });
+        } else {
+            telemetry.initialize();
+            telemetry.trackEvent('extension_activated');
         }
     }
 

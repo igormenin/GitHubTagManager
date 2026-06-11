@@ -2,6 +2,12 @@
 
 All notable changes to the "GitHub Tag Manager" extension will be documented in this file.
 
+## [0.4.4] - 2026-06-10
+
+### Changed
+- Moved the telemetry consent prompt from initial activation to webview panel loading so it only prompts when the user views the extension sidebar.
+- Changed the telemetry consent prompt to a centered modal dialog to make it highly visible.
+
 ## [0.4.1] - 2026-06-04
 
 ### Added
